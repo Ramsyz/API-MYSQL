@@ -30,76 +30,75 @@ app.get("/createdb", (req, res) => {
 });
 
 //create table
-app.get("/createbrandstable", (req, res) => {
+app.get("/createbookstable", (req, res) => {
 	let sql =
-		"CREATE TABLE brands(id int AUTO_INCREMENT, title VARCHAR(255), body VARCHAR(255), PRIMARY KEY (id))";
+		"CREATE TABLE books(id int AUTO_INCREMENT, title VARCHAR(255), body VARCHAR(255), PRIMARY KEY (id))";
 	db.query(sql, (err, result) => {
 		if (err) throw error;
 		console.log(result);
-		res.send("Brands table created...");
+		res.send("Books table created...");
 	});
 });
 
-// Insert brand
-app.get("/addbrand1", (req, res) => {
-	let brand = { title: "Brand one", body: "This is brand number one" };
+// Insert book
+app.get("/addbok1", (req, res) => {
+	let book = { title: "Book one", body: "This is book number one" };
 	let sql = "INSERT INTO posts SET ?";
-	let query = db.query(sql, brand, (err, result) => {
+	let query = db.query(sql, book, (err, result) => {
 		if (err) throw err;
 		console.log(result);
-		res.send("Brand1 created...");
+		res.send("Book1 created...");
 	});
 });
 
-app.get("/addbrand2", (req, res) => {
-	let brand = { title: "Brand two", body: "This is brand number two" };
+app.get("/addbook2", (req, res) => {
+	let book = { title: "Book two", body: "This is book number two" };
 	let sql = "INSERT INTO posts SET ?";
-	let query = db.query(sql, brand, (err, result) => {
+	let query = db.query(sql, book, (err, result) => {
 		if (err) throw err;
 		console.log(result);
-		res.send("Brand2 created...");
+		res.send("Book2 created...");
 	});
 });
 
-//Select brands
-app.get("/getbrands", (req, res) => {
-	let sql = "SELECT * FROM brands";
+//Select books
+app.get("/getbooks", (req, res) => {
+	let sql = "SELECT * FROM books";
 	let query = db.query(sql, (err, results) => {
 		if (err) throw err;
 		console.log(results);
-		res.send("Brands Fetched...");
+		res.send("Books Fetched...");
 	});
 });
 
-//Select Brand
-app.get("/getbrand/:id", (req, res) => {
-	let sql = `SELECT * FROM brands WHERE id = ${req.params.id}`;
+//Select Book
+app.get("/getbook/:id", (req, res) => {
+	let sql = `SELECT * FROM books WHERE id = ${req.params.id}`;
 	let query = db.query(sql, (err, result) => {
 		if (err) throw err;
 		console.log(result);
-		res.send("Brand Fetched...");
+		res.send("Book Fetched...");
 	});
 });
 
-// Update Brand
-app.get("/updatebrand/:id", (req, res) => {
-	let newTitle = "Updated Brand";
-	let sql = `UPDATE brands SET title = '${newTitle}' WHERE id = ${req.params.id}`;
+// Update Book
+app.get("/updatebook/:id", (req, res) => {
+	let newTitle = "Updated Book";
+	let sql = `UPDATE books SET title = '${newTitle}' WHERE id = ${req.params.id}`;
 	let query = db.query(sql, (err, result) => {
 		if (err) throw err;
 		console.log(result);
-		res.send("Brand updated...");
+		res.send("Book updated...");
 	});
 });
 
-//Delete Brand
-app.get("/deletebrand/:id", (req, res) => {
-	let newTitle = "Updated Brand";
-	let sql = `DELETE FROM brands WHERE id = ${req.params.id}`;
+//Delete Book
+app.get("/deletebook/:id", (req, res) => {
+	let sql = `DELETE FROM books WHERE id = ${req.params.id}`;
 	let query = db.query(sql, (err, result) => {
 		if (err) throw err;
 		console.log(result);
-		res.send("Brand deleted...");
+		res.send("Book deleted...");
 	});
 });
 
